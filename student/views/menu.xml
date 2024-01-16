@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<menuitem id="menu_student" name="Student" action="student_act" web_icon="library-management-system,static/description/icon.png" />
+</odoo>
