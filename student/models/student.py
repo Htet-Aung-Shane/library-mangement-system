@@ -15,11 +15,12 @@ class Student(models.Model):
     email = fields.Char("Email")
     phone_no = fields.Char("Phone No")
     address = fields.Char("Address")
-
+    
     @api.constrains('student_id')
     def _check_unique_student_id(self):
         for stu in self:
             if stu.student_id:
                 duplicate_stu = self.search([('student_id', '=', stu.student_id), ('id', '!=', stu.id)])
                 if duplicate_stu:
-                    raise UserError('Student ID must be unique!!!')
+                    raise UserError('Student ID must be unique!!!')              
+

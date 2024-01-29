@@ -1,2 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_student,name_student,model_student,,1,1,1,1
+access_academic_year,name_academic_year,model_academic_year,,1,1,1,1
+access_batch,name_batch,model_batch,,1,1,1,1
+access_class,name_class,model_class,,1,1,1,1

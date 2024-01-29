@@ -2,7 +2,7 @@
     'name': 'Student',
     'version': '16.0.1.0',
     'license': 'LGPL-3',
-    'category': 'Education',
+    'category': 'Customizations',
     "sequence": 1,
     'summary': 'Manage Students for library management system',
     'complexity': "easy",
@@ -16,7 +16,10 @@
     ],
     'data': [
         'security/ir.model.access.csv',  
-        'views/menu.xml', 
         'views/student.xml',
+        'views/academic_year.xml',
+        'views/batch.xml',
+        'views/class.xml',
+        'views/menu.xml', 
     ]
 }
