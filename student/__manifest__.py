@@ -11,6 +11,7 @@
     'installable': True,
     'auto_install': False,
     'application': True,
+    'depends': ['base_setup','contacts','website'],
     'images': [
         'static/description/icon.jpg',
     ],

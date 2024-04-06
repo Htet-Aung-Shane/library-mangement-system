@@ -21,21 +21,38 @@
 			<field name="name">student.view.form</field>
 			<field name="model">student</field>
 			<field name="arch" type="xml">
-				<form string="Student">
-                    <field name="image" widget="image" class="oe_avatar" />
+				<form string="Student">         
+					<button string="Create User" name="action_create_user" type="object" class="oe_highlight" attrs="{'invisible': [('is_user', '=', True)]}"/>   
+					<button string="Send Invitation Email" name="action_send_invitation" type="object" class="oe_link" attrs="{'invisible': [('is_user', '=', False)]}"/>           
 					<sheet>
+						<field name="image" widget="image" class="oe_avatar" />
 						<group>							
                             <group>      
 								<field name="name" string="Name"/>                          
-                                <field name="email" />
-                                <field name="phone_no" />
+                                <field name="email" required="1"/>
+                                <field name="phone_no" required="1"/>
+								<field name="is_user" invisible="1"/>
                                 <separator/>
                             </group>
 							<group>                                
-                                <field name="student_id" />
+                                <field name="student_id" required="1"/>
 								<field name="address" />
+								<field name="partner_id" string="Contact"/>
                                 <separator/>
                             </group>
+							<notebook>
+								<page name="education" string="Education">
+									<group>
+										<group>
+											<field name="class_id" />
+											<field name="batch_id" />
+										</group>
+										<group>
+											<field name="academic_year_id" />
+										</group>
+									</group>
+								</page>
+							</notebook>
 						</group>
 					</sheet>
 				</form>
