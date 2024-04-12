@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="book_category_act" model="ir.actions.act_window">
+			<field name="name">Book Category</field>
+			<field name="res_model">book.category</field>
+			<field name="view_mode">tree,form</field>
+		</record> 
+        <record id="book_category_view_tree" model="ir.ui.view">
+			<field name="name">book.category.view.tree</field>
+			<field name="model">book.category</field>
+			<field name="arch" type="xml">
+				<tree string="Book Category List">
+                    <field name="name" />
+					<field name="total_qty"/>                    
+					<field name="color" widget="color_picker"/>
+				</tree>
+			</field>
+		</record>
+		<record id="book_view_form" model="ir.ui.view">
+			<field name="name">book.category.view.form</field>
+			<field name="model">book.category</field>
+			<field name="arch" type="xml">
+				<form string="book">                    
+					<sheet>
+                        <group>							
+                            <group>      
+								<field name="name" />     
+								<field name="total_qty" readonly="1"/>                
+                                <field name="color" widget="color_picker"/>
+                                <separator/>
+                            </group>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+    </data>
+    
+
+</odoo>

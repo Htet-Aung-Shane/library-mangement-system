@@ -5,4 +5,9 @@
 	<menuitem id="menu_student_academic" name="Academic Year" action="academic_act" parent="menu_configuration"/>
 	<menuitem id="menu_batch" name="Batch" action="batch_act" parent="menu_configuration"/>
 	<menuitem id="menu_class" name="Class" action="class_act" parent="menu_configuration"/>
+
+	<menuitem id="menu_library" name="Library" action="book_act" web_icon="library-management-system,static/description/knowledge.png" />
+	<menuitem id="menu_book_category" name="Book Category" parent="menu_library" action="book_category_act" sequence="2"/>
+	<menuitem id="menu_book_author" name="Author" parent="menu_library" action="book_author_act" sequence="3"/>
+
 </odoo>

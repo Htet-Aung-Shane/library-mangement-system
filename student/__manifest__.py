@@ -21,6 +21,9 @@
         'views/academic_year.xml',
         'views/batch.xml',
         'views/class.xml',
+        'views/book.xml',
+        'views/book_category.xml',
+        'views/book_author.xml',
         'views/menu.xml', 
     ]
 }
