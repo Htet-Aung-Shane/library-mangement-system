@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="book_rent_act" model="ir.actions.act_window">
+			<field name="name">Book Renting</field>
+			<field name="res_model">book.rent</field>
+			<field name="view_mode">tree,form</field>
+		</record> 
+        <record id="book_view_tree" model="ir.ui.view">
+			<field name="name">book.rent.view.tree</field>
+			<field name="model">book.rent</field>
+			<field name="arch" type="xml">
+				<tree string="Rent List">
+                    <field name="book_id"/>                    
+					<field name="author_id"/>
+                    <field name="category_id"/>
+					<field name="quantity"/>
+					<field name="onhand_quantity"/>   
+				</tree>
+			</field>
+		</record>
+		<record id="bok_rent_view_form" model="ir.ui.view">
+			<field name="name">book.rent.view.form</field>
+			<field name="model">book.rent</field>
+			<field name="arch" type="xml">
+				<form string="Book Renting">                    
+					<sheet>
+						<group>							
+                            <group>     
+								<field name="no"/> 
+								<field name="book_id"/>
+								<field name="onhand_quantity"/>
+                                <separator/>
+                            </group>
+                            <group>
+								<field name="author_id"/>
+								<field name="category_id"/>
+								<field name="quantity"/>
+                            </group>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+    </data>
+    
+
+</odoo>

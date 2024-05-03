@@ -6,3 +6,4 @@ access_class,name_class,model_class,,1,1,1,1
 access_book,name_book,model_book,,1,1,1,1
 access_book_category,name_book_category,model_book_category,,1,1,1,1
 access_book_author,name_book_author,model_book_author,,1,1,1,1
+access_book_rent,name_book_rent,model_book_rent,,1,1,1,1

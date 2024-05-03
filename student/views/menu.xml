@@ -6,7 +6,8 @@
 	<menuitem id="menu_batch" name="Batch" action="batch_act" parent="menu_configuration"/>
 	<menuitem id="menu_class" name="Class" action="class_act" parent="menu_configuration"/>
 
-	<menuitem id="menu_library" name="Library" action="book_act" web_icon="library-management-system,static/description/knowledge.png" />
+	<menuitem id="menu_library" name="Library" action="book_rent_act" web_icon="library-management-system,static/description/knowledge.png" />
+	<menuitem id="menu_book" name="Books" parent="menu_library" action="book_act" sequence="1"/>
 	<menuitem id="menu_book_category" name="Book Category" parent="menu_library" action="book_category_act" sequence="2"/>
 	<menuitem id="menu_book_author" name="Author" parent="menu_library" action="book_author_act" sequence="3"/>
 

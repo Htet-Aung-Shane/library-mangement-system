@@ -24,6 +24,8 @@
         'views/book.xml',
         'views/book_category.xml',
         'views/book_author.xml',
+        'views/book_rent.xml',
+        'views/rent_sequence.xml',
         'views/menu.xml', 
     ]
 }

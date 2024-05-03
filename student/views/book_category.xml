@@ -17,7 +17,7 @@
 				</tree>
 			</field>
 		</record>
-		<record id="book_view_form" model="ir.ui.view">
+		<record id="book_category_view_form" model="ir.ui.view">
 			<field name="name">book.category.view.form</field>
 			<field name="model">book.category</field>
 			<field name="arch" type="xml">
