@@ -10,12 +10,10 @@
 			<field name="name">book.rent.view.tree</field>
 			<field name="model">book.rent</field>
 			<field name="arch" type="xml">
-				<tree string="Rent List">
-                    <field name="book_id"/>                    
-					<field name="author_id"/>
-                    <field name="category_id"/>
-					<field name="quantity"/>
-					<field name="onhand_quantity"/>   
+				<tree string="Rent List">  
+					<field name="no"/>             
+					<field name="author_ids" widget="many2many_tags"/>
+                    <field name="category_ids" widget="many2many_tags"/>
 				</tree>
 			</field>
 		</record>
@@ -28,15 +26,15 @@
 						<group>							
                             <group>     
 								<field name="no"/> 
-								<field name="book_id"/>
-								<field name="onhand_quantity"/>
+								<field name="student_id"/> 
+								<field name="author_ids" widget="many2many_tags"/> 
+								<field name="category_ids" widget="many2many_tags"/> 
                                 <separator/>
                             </group>
-                            <group>
-								<field name="author_id"/>
-								<field name="category_id"/>
-								<field name="quantity"/>
-                            </group>
+							<group>
+								<field name="admin_id" readonly='True'/>
+								<field name="rent_date" readonly='True'/>
+							</group>
 						</group>
 					</sheet>
 				</form>
