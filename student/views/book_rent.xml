@@ -36,6 +36,15 @@
 								<field name="rent_date" readonly='True'/>
 							</group>
 						</group>
+						<notebook>
+							<page name="book_lines" string="Books">
+								<field name="rent_ids" readonly="1">
+									<tree editable="bottom">
+										<field name="book_id"/>
+									</tree>
+								</field>
+							</page>
+						</notebook>
 					</sheet>
 				</form>
 			</field>
