@@ -1,1 +1,1 @@
-from . import student, education, book, book_author, book_category, book_rent, book_rent_line
+from . import student, education
