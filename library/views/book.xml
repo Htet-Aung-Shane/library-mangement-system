@@ -28,7 +28,7 @@
                         <field name="image" widget="image" class="oe_avatar" />
 						<group>							
                             <group>      
-								<field name="name" attrs="{'required': True}"/>                  
+								<field name="name" required="True"/>                  
                                 <field name="barcode" widget="barcode"/>
                                 <field name="isbn"/>
                                 <field name="author_id"/>

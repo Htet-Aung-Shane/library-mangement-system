@@ -1,6 +1,6 @@
 {
     'name': 'Library',
-    'version': '16.0.1.0',
+    'version': '17.0.1.0',
     'license': 'LGPL-3',
     'category': 'Customizations',
     "sequence": 1,
@@ -11,7 +11,7 @@
     'installable': True,
     'auto_install': False,
     'application': True,
-    'depends': ['base_setup','contacts','website','student'],
+    'depends': ['base','contacts','website','student'],
     'images': [
         'static/description/icon.jpg',
     ],
