@@ -22,5 +22,6 @@
         'views/batch.xml',
         'views/class.xml',
         'views/menu.xml', 
+        'views/portal.xml', 
     ]
 }
