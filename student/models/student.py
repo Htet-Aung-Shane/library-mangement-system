@@ -40,12 +40,13 @@ class Student(models.Model):
             self.partner_id.phone = self.phone_no
             self.partner_id.student_id = self.student_id
         else:
+            name = self.name or 'Draft'
             self.partner_id = self.env["res.partner"].create(
                 {
-                    "name": self.name,
+                    "name": name,
                     "email": self.email,
                     "phone": self.phone_no,
-                    "ref": self.student_id,  # Assuming 'ref' is used for student_id
+                    "student_id": self.student_id,
                 }
             )
 

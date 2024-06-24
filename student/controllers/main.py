@@ -2,8 +2,6 @@ from odoo import http
 from odoo.http import request
 from odoo.addons.auth_signup.controllers.main import AuthSignupHome
 from datetime import datetime
-import json
-import pdfkit
 
 
 class LuckDraw(AuthSignupHome):
