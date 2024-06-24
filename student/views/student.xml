@@ -21,10 +21,12 @@
 			<field name="name">student.view.form</field>
 			<field name="model">student</field>
 			<field name="arch" type="xml">
-				<form string="Student">         
-					<button string="Create User" name="action_create_user" type="object" class="oe_highlight" invisible="is_user"/>   
-					<button string="Send Invitation Email" name="action_send_invitation" type="object" class="oe_link" invisible="not is_user"/>           
-					<sheet>
+				<form string="Student"> 	
+					<header>
+						<button string="Create User" name="action_create_user" type="object" class="btn btn-outline-primary ms-2 btn-sm px-4" invisible="is_user"/>   
+						<button string="Send Invitation Email" name="action_send_invitation" type="object" class="btn btn-outline-info ms-2 btn-sm px-4" invisible="not is_user"/>   
+					</header> 					       					        
+					<sheet>											
 						<field name="image" widget="image" class="oe_avatar" />
 						<group>							
                             <group>      
