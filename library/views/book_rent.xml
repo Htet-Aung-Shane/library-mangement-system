@@ -39,13 +39,14 @@
 						<notebook>
 							<page name="book_lines" string="Books">
 								<field name="rent_ids">
-									<tree editable="bottom">
-										<field name="book_id"/>
+									<tree editable="bottom" readonly="is_returned">
+										<field name="book_id" no_create="True"/>
 										<field name="author_id"/>
 										<field name="category_ids" widget="many2many_tags"/>
 										<field name="rent_date"/>
 										<field name="expire_date"/>
 										<field name="is_penalty" readonly="1"/>
+										<field name="is_returned" readonly="1"/>
 									</tree>
 								</field>
 							</page>
