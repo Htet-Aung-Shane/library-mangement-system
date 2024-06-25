@@ -21,6 +21,9 @@ class Student(models.Model):
     academic_year_id = fields.Many2one("academic.year")
     partner_id = fields.Many2one("res.partner", compute="_compute_partner", store=True)
     is_user = fields.Boolean(default=False)
+    book_rent_ids = fields.One2many(
+        "book.rent.line", "rent_student_id", string="Books", ondelete="cascade"
+    )
 
     @api.constrains("student_id")
     def _check_unique_student_id(self):

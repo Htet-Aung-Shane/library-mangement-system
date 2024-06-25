@@ -54,6 +54,21 @@
 										</group>
 									</group>
 								</page>
+								<page name="book_lines" string="Books">
+									<field name="book_rent_ids" readonly="1">
+										<tree>
+											<field name="book_id"/>
+											<field name="author_id"/>
+											<field name="category_ids" widget="many2many_tags"/>
+											<field name="rent_quantity"/>
+											<field name="onhand_quantity"/>
+											<field name="rent_date"/>
+											<field name="expire_date"/>
+											<field name="is_penalty"/>
+											<field name="is_returned"/>
+										</tree>
+									</field>
+								</page>
 							</notebook>
 						</group>
 					</sheet>

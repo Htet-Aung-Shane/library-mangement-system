@@ -21,12 +21,17 @@
 			<field name="name">book.rent.view.form</field>
 			<field name="model">book.rent</field>
 			<field name="arch" type="xml">
-				<form string="Book Renting">                    
+				<form string="Book Renting" readonly="is_confirm">   
+					<header>
+						<button string="Confirm" name="action_confirm" type="object" class="btn btn-outline-primary ms-2 btn-sm px-4" invisible="is_confirm"/>   
+						<button string="Draft" name="action_draft" type="object" class="btn btn-outline-info ms-2 btn-sm px-4" invisible="not is_confirm"/>   
+					</header>                  
 					<sheet>
 						<group>							
                             <group>     
 								<field name="no"/> 
 								<field name="student_id"/> 
+								<field name="is_confirm" invisible="1"/> 
 								<field name="author_ids" widget="many2many_tags" readonly="1"/> 
 								<field name="category_ids" widget="many2many_tags" readonly="1"/> 
                                 <separator/>
@@ -43,6 +48,8 @@
 										<field name="book_id" no_create="True"/>
 										<field name="author_id"/>
 										<field name="category_ids" widget="many2many_tags"/>
+										<field name="rent_quantity"/>
+										<field name="onhand_quantity" readonly="1"/>
 										<field name="rent_date"/>
 										<field name="expire_date"/>
 										<field name="is_penalty" readonly="1"/>

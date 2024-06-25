@@ -21,6 +21,7 @@ class BookRent(models.Model):
         string='Books',
         required=True,
     )
+    is_confirm = fields.Boolean('Is Confirm', default=False)
 
     @api.model
     def create(self, vals):
@@ -42,3 +43,9 @@ class BookRent(models.Model):
                 rec.category_ids = rec.rent_ids.mapped('book_id.category_ids')
             else:
                 rec.category_ids = False
+
+    def action_confirm(self):
+        self.is_confirm = True
+
+    def action_draft(self):
+        self.is_confirm = False

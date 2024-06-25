@@ -26,7 +26,14 @@ class BookRentLine(models.Model):
     expire_date = fields.Date('Expired Date')
     is_penalty = fields.Boolean('Is Penalty', compute="_compute_is_penalty")
     rent_id = fields.Many2one('book.rent', string="Rent")
+    rent_student_id = fields.Many2one('student', string="Student")
     is_returned = fields.Boolean('Is Returned')
+
+    @api.constrains('expire_date', 'rent_date')
+    def _check_dates(self):
+        for record in self:
+            if record.expire_date and record.rent_date and record.expire_date < record.rent_date:
+                raise UserError(_("The Expired Date cannot be earlier than the Rent Date."))
 
     @api.depends('rent_date', 'expire_date')
     def _compute_is_penalty(self):
