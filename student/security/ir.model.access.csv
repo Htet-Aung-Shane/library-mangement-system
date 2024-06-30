@@ -3,3 +3,4 @@ access_student,name_student,model_student,,1,1,1,1
 access_academic_year,name_academic_year,model_academic_year,,1,1,1,1
 access_batch,name_batch,model_batch,,1,1,1,1
 access_class,name_class,model_class,,1,1,1,1
+access_student_book_rent_line,name_student_book_rent_line,model_student_book_rent_line,,1,1,1,1

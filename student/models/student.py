@@ -19,10 +19,10 @@ class Student(models.Model):
     class_id = fields.Many2one("class")
     batch_id = fields.Many2one("batch")
     academic_year_id = fields.Many2one("academic.year")
-    partner_id = fields.Many2one("res.partner", compute="_compute_partner", store=True)
+    partner_id = fields.Many2one("res.partner", compute="_compute_partner",precompute=True, store=True)
     is_user = fields.Boolean(default=False)
     book_rent_ids = fields.One2many(
-        "book.rent.line", "rent_student_id", string="Books", ondelete="cascade"
+        "student.book.rent.line", "rent_student_id", string="Books", ondelete="cascade"
     )
 
     @api.constrains("student_id")

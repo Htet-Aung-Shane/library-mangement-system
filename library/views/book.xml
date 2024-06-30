@@ -5,17 +5,19 @@
 			<field name="name">Books</field>
 			<field name="res_model">book</field>
 			<field name="view_mode">tree,form</field>
+			<!-- <field name="view_id" ref="bok_view_form"/> -->
 		</record> 
-        <record id="book_view_tree" model="ir.ui.view">
-			<field name="name">book.view.tree</field>
+        <record id="book_model_view_tree" model="ir.ui.view">
+			<field name="name">book.model.view.tree</field>
 			<field name="model">book</field>
 			<field name="arch" type="xml">
-				<tree string="class List">
-                    <field name="name"/>                    
-					<field name="barcode"/>
-                    <field name="author_id"/>
+				<tree string="Book List">
+                    <field name="name" />
+					<field name="author_id" />
+					<field name="category_ids" widget="many2many_tags"/>
+					<field name="total_qty"/>    
 					<field name="onhand_qty"/>
-					<field name="category_ids" widget="many2many_tags"/>   
+					<field name="rent_qty"/>        
 				</tree>
 			</field>
 		</record>

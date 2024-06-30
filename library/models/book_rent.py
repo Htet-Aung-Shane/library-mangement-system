@@ -8,8 +8,7 @@ class BookRent(models.Model):
     no = fields.Char (
         'Rent Sequence', size=16, copy=False,
         readonly=True, store=True,
-        default=lambda self:
-        self.env['ir.sequence'].next_by_code('book.rent'))  
+        default="Draft")  
     rent_date = fields.Date('Rent Date', default=fields.Date.today())
     author_ids = fields.Many2many('book.author', string="Authors", compute='_compute_author_ids', store=True)
     category_ids = fields.Many2many("book.category", compute='_compute_category_ids', store=True)
@@ -45,6 +44,14 @@ class BookRent(models.Model):
                 rec.category_ids = False
 
     def action_confirm(self):
+        """Set the rent to confirmed and generate the sequence number."""
+        if self.no == 'Draft':  # Check if the sequence is still the placeholder
+            self.no = self.env['ir.sequence'].next_by_code('book.rent')   
+
+        if self.rent_ids:
+            for rent in self.rent_ids:
+                if rent.rent_quantity > rent.onhand_quantity:
+                    raise UserError('There is no enough book qty')   
         self.is_confirm = True
 
     def action_draft(self):

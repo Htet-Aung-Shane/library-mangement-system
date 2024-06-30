@@ -1,1 +1,1 @@
-from . import student, education, partner_ext
+from . import student, education, partner_ext, student_book
