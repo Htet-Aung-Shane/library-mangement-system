@@ -27,11 +27,12 @@ class Book(models.Model):
 
     @api.onchange('total_qty','rent_qty')
     def _compute_onhand(self):
-        if self.total_qty:
-            if not self.rent_qty:
-                self.onhand_qty = self.total_qty
+        for rec in self:
+            if rec.total_qty:
+                if not rec.rent_qty:
+                    rec.onhand_qty = rec.total_qty
+                else:
+                    rec.onhand_qty = rec.total_qty - rec.rent_qty
             else:
-                self.onhand_qty = self.total_qty - self.rent_qty
-        else:
-            self.onhand_qty = 0
+                rec.onhand_qty = 0
 
