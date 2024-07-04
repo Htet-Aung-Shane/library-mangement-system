@@ -22,8 +22,8 @@
 			<field name="model">class</field>
 			<field name="arch" type="xml">
 				<form string="class">
-                    <field name="image" widget="image" class="oe_avatar" />
 					<sheet>
+						<field name="image" widget="image" class="oe_avatar" />
 						<group>							
                             <group>      
 								<field name="name" string="Name"/>                          

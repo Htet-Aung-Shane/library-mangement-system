@@ -54,8 +54,8 @@
 										</group>
 									</group>
 								</page>
-								<page name="book_lines" string="Books">
-									<field name="book_rent_ids" readonly="1">
+								<!-- <page name="book_lines" string="Books">
+									<field name="book_rent_ids">
 										<tree>
 											<field name="book_id"/>
 											<field name="author_id"/>
@@ -68,7 +68,7 @@
 											<field name="is_returned"/>
 										</tree>
 									</field>
-								</page>
+								</page> -->
 							</notebook>
 						</group>
 					</sheet>

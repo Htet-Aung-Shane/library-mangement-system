@@ -48,9 +48,9 @@
 										<field name="book_id" no_create="True"/>
 										<field name="author_id"/>
 										<field name="category_ids" widget="many2many_tags"/>
-										<field name="rent_quantity"/>
+										<field name="rent_quantity" readonly="parent.is_confirm"/>
 										<field name="onhand_quantity" readonly="1"/>
-										<field name="rent_date"/>
+										<field name="rent_date" readonly="parent.is_confirm" />
 										<field name="expire_date" required="1"/>
 										<field name="is_penalty" readonly="1"/>
 										<field name="is_returned" readonly="1"/>
