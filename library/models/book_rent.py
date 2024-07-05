@@ -9,6 +9,7 @@ class BookRent(models.Model):
         'Rent Sequence', size=16, copy=False,
         readonly=True, store=True,
         default="Draft")  
+    name = fields.Char ('Name', compute="_compute_name")
     rent_date = fields.Date('Rent Date', default=fields.Date.today())
     author_ids = fields.Many2many('book.author', string="Authors", compute='_compute_author_ids', store=True)
     category_ids = fields.Many2many("book.category", compute='_compute_category_ids', store=True)
@@ -22,6 +23,13 @@ class BookRent(models.Model):
     )
     is_confirm = fields.Boolean('Is Confirm', default=False)
 
+    @api.onchange('no')
+    def _compute_name(self):
+        for rec in self:
+            if rec.no:
+                rec.name = rec.no
+            else:
+                rec.nmae = False
     @api.model
     def create(self, vals):
         vals["admin_id"] = self.env.user.partner_id.id

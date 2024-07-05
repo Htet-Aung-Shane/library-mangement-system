@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="book_rent_line_act" model="ir.actions.act_window">
+            <field name="name">Book Rent Line</field>
+            <field name="res_model">book.rent.line</field>
+            <field name="view_mode">tree</field>
+        </record>
+        <record id="book_rent_line_search" model="ir.ui.view">
+            <field name="name">book_rent_line_search_view</field>
+            <field name="model">book.rent.line</field>
+            <field name="arch" type="xml">
+                <search string="">
+                    <field name="rent_id" string="Rent No"/>
+                    <field name="admin_id" string="Admin" />
+                    <field name="student_id" string="Student" />
+                    <field name="book_id" string="Book" />
+                    <group expand="0" string="Group By">
+                        <filter name="group_by_name" string="Rent" context="{'group_by': 'rent_id'}" />
+                        <filter name="group_by_admin" string="Admin" context="{'group_by': 'admin_id'}" />
+                        <filter name="group_by_student" string="Student" context="{'group_by': 'student_id'}" />
+                        <filter name="group_by_book" string="Book" context="{'group_by': 'book_id'}" />
+                        <filter name="group_by_penalty" string="Penalty" context="{'group_by': 'is_penalty'}" />
+                        <filter name="group_by_return" string="Return" context="{'group_by': 'is_returned'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+        <record id="book_rent_line_view_tree" model="ir.ui.view">
+            <field name="name">book.rent.line.view.tree</field>
+            <field name="model">book.rent.line</field>
+            <field name="arch" type="xml">
+                <tree string="Rent List" create="False" edit="False">
+                    <field name="rent_id" />
+                    <field name="book_id" />
+                    <field name="student_id" />
+                    <field name="rent_quantity" />
+                    <field name="rent_date" />
+                    <field name="return_date" />
+                    <field name="expire_date" />
+                    <field name="is_penalty" />
+                    <field name="is_returned" />
+                    <field name="author_id"/>
+                    <field name="category_ids" widget="many2many_tags"/>
+                </tree>
+            </field>
+        </record>
+    </data>
+</odoo>

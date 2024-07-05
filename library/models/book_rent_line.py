@@ -9,6 +9,8 @@ class BookRentLine(models.Model):
     onhand_quantity = fields.Integer("On Hand Quantity", compute="_compute_book_info")
     author_id = fields.Many2one('book.author', string="Author", compute="_compute_book_info")
     category_ids = fields.Many2many("book.category", string="Categories", compute="_compute_book_info")
+    student_id = fields.Many2one('student', string="Student")
+    admin_id = fields.Many2one('res.partner', string="Admin")
     @api.depends('book_id')
     def _compute_book_info(self):
         if self.book_id:
@@ -24,7 +26,7 @@ class BookRentLine(models.Model):
     rent_date = fields.Date('Rent Date', default=fields.Date.today())
     return_date = fields.Date('Returned Date')
     expire_date = fields.Date('Expired Date')
-    is_penalty = fields.Boolean('Is Penalty', compute="_compute_is_penalty")
+    is_penalty = fields.Boolean('Is Penalty', compute="_compute_is_penalty",store=True,pre_compute=True)
     rent_id = fields.Many2one('book.rent', string="Rent")
     is_returned = fields.Boolean('Is Returned')
 
