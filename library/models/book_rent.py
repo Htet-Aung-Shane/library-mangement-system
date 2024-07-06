@@ -57,24 +57,10 @@ class BookRent(models.Model):
             self.no = self.env['ir.sequence'].next_by_code('book.rent')
         
         if self.rent_ids:
-            student_book_ids = []
             for rent in self.rent_ids:
-                student_book_ids.append((0, 0, {
-                    'book_id': rent.book_id.id,
-                    'rent_quantity': rent.rent_quantity,
-                    'rent_date': rent.rent_date,
-                    'expire_date': rent.expire_date,
-                    'rent_id': self.id,
-                    'rent_student_id': self.student_id.id
-                }))
-            
-            student = self.env['student'].browse(self.student_id.id)
-            # Combine existing book_rent_ids with new student_book_ids
-            # existing_book_rent_ids = student.book_rent_ids
-            # combined_book_rent_ids = existing_book_rent_ids + student_book_ids
-            student.book_rent_ids.unlink()
-            student.write({'book_rent_ids': student_book_ids})
-        
+                if self.student_id:
+                    rent.student_id = self.student_id.id     
+                    rent.admin_id = self.admin_id.id   
         self.is_confirm = True
 
 
