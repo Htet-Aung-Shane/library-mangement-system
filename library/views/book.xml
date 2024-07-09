@@ -43,6 +43,27 @@
                                 <field name="rent_qty" readonly="True"/>
                             </group>
 						</group>
+						<notebook>
+							<page name="addition_info" string="Addtional Info">
+								<group>
+									<group>
+										<field name="accession_no" />
+										<field name="call_no" /> 
+										<field name="book_source" /> 
+										<field name="degree" /> 
+										<field name="department" /> 
+										<field name="roll_no" /> 
+									</group>
+									<group>
+										<field name="date" /> 
+										<field name="publisher" /> 
+										<field name="edition" /> 
+										<field name="year" /> 
+										<field name="rate" /> 
+									</group>
+								</group>
+							</page>
+						</notebook>
 					</sheet>
 				</form>
 			</field>

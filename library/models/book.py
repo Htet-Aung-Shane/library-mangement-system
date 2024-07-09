@@ -14,7 +14,7 @@ class Book(models.Model):
         default=True,
         help="The active field allows you to hide the category without removing it.",
     )
-    name = fields.Char("Book Name")
+    name = fields.Char("Book title")
     image = fields.Binary()
     isbn = fields.Char("ISBN")
     author_id = fields.Many2one('book.author', string="Author")
@@ -24,6 +24,20 @@ class Book(models.Model):
     onhand_qty = fields.Integer("On Hand Quantity", compute="_compute_onhand")      
     rent_qty = fields.Integer("Rent Quantity")
     category_ids = fields.Many2many("book.category")
+
+    # additional_field
+    accession_no = fields.Char("Accession No.")
+    call_no = fields.Char("Call No.")
+    date = fields.Date("Date")
+    publisher = fields.Char("Publisher")
+    edition = fields.Char("Edition")
+    year = fields.Char("Year")
+    rate = fields.Float("Rate")
+    book_source = fields.Char("Book Source")
+    degree = fields.Char("Degree")
+    department = fields.Char("Department")
+    roll_no = fields.Char("Roll No.")
+
 
     @api.onchange('total_qty','rent_qty')
     def _compute_onhand(self):

@@ -10,10 +10,12 @@ class BookReturn(models.Model):
         readonly=True, store=True,
         default="Draft")  
     name = fields.Char ('Name', compute="_compute_name")
+    student_id = fields.Many2one('student', string="Student")
     return_date = fields.Date('Return Date', default=fields.Date.today())
     total_penalty_fee = fields.Float('Total Penalty Fee')
+    is_generate = fields.Boolean('Is Generate', default=False)
+    is_return = fields.Boolean('Is Return', default=False)
 
-    
     @api.onchange('no')
     def _compute_name(self):
         for rec in self:
@@ -24,10 +26,11 @@ class BookReturn(models.Model):
     
     
     def action_generate(self):
-        print('generate')
+        self.is_generate = True
     
     def action_return(self):
         print('return')
     
-    def action_cancel(self):
+    def action_draft(self):
         print('cancel')
+        self.is_generate = False
