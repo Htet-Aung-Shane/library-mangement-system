@@ -60,9 +60,21 @@ class BookRent(models.Model):
             for rent in self.rent_ids:
                 if self.student_id:
                     rent.student_id = self.student_id.id     
-                    rent.admin_id = self.admin_id.id   
+                    rent.admin_id = self.admin_id.id  
+                if rent.rent_quantity > rent.book_id.total_qty:
+                    raise UserError(_('The quantity of book is not enough'))
+                elif rent.rent_quantity == 0:
+                    raise UserError(_('The quantity of book is not set yet'))
+                elif rent.rent_quantity:
+                    rent.book_id.rent_qty += rent.rent_quantity
+                rent.is_rent = True
         self.is_confirm = True
 
 
     def action_draft(self):
+        if self.rent_ids:
+            for rent in self.rent_ids:
+                rent.is_rent = False
+                if rent.rent_quantity:
+                    rent.book_id.rent_qty -= rent.rent_quantity
         self.is_confirm = False

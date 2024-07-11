@@ -1,16 +1,15 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError, UserError
 
-class BookRentLine(models.Model):
-    _name = "book.rent.line"
-    _description = "Line Of Books Renting"
+class BookReturnLine(models.Model):
+    _name = "book.return.line"
+    _description = "Line Of Books Return"
     
     book_id = fields.Many2one('book', string="Book")
     onhand_quantity = fields.Integer("On Hand Quantity", compute="_compute_book_info")
     author_id = fields.Many2one('book.author', string="Author", compute="_compute_book_info")
     category_ids = fields.Many2many("book.category", string="Categories", compute="_compute_book_info")
     student_id = fields.Many2one('student', string="Student")
-    admin_id = fields.Many2one('res.partner', string="Admin")
     @api.depends('book_id')
     def _compute_book_info(self):
         if self.book_id:
@@ -23,23 +22,18 @@ class BookRentLine(models.Model):
             self.category_ids = False
     
     rent_quantity = fields.Integer("Rent Quantity")
-    rent_date = fields.Date('Rent Date', default=fields.Date.today())
+    return_quantity = fields.Integer("Return Quantity")
+    rent_date = fields.Date('Rent Date')
     return_date = fields.Date('Returned Date')
     expire_date = fields.Date('Expired Date')
     is_penalty = fields.Boolean('Is Penalty', compute="_compute_is_penalty",store=True,pre_compute=True)
-    rent_id = fields.Many2one('book.rent', string="Rent")
+    rent_line_id = fields.Many2one('book.rent.line', string="Rent")
+    return_id = fields.Many2one('book.return', string="Return")
     is_returned = fields.Boolean('Is Returned')
-    is_rent = fields.Boolean('Is Rent')
-
-    @api.constrains('expire_date', 'rent_date')
-    def _check_dates(self):
-        for record in self:
-            if record.expire_date and record.rent_date and record.expire_date < record.rent_date:
-                raise UserError(_("The Expired Date cannot be earlier than the Rent Date."))
-            if record.rent_quantity > record.onhand_quantity:
-                raise UserError(_("The Rent Quantity cannot be greater than the On Hand Quantity."))
-
-    @api.depends()
+    penalty_fee = fields.Float('Penalty Fee')
+    
+    
+    @api.depends('return_date','expire_date')
     def _compute_is_penalty(self):
         for line in self:
             today = fields.Date.today()
@@ -47,11 +41,3 @@ class BookRentLine(models.Model):
                 line.is_penalty = False
             else:
                 line.is_penalty = True
-
-    @api.depends('return_date')            
-    def _compute_is_returned(self):
-        for line in self:
-            if line.return_date:
-                line.is_returned = True
-            else:
-                line.is_returned = False

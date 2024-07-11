@@ -5,3 +5,4 @@ access_book_author,name_book_author,model_book_author,,1,1,1,1
 access_book_rent,name_book_rent,model_book_rent,,1,1,1,1
 access_book_rent_line,name_book_rent_line,model_book_rent_line,,1,1,1,1
 access_book_return,name_book_return,model_book_return,,1,1,1,1
+access_book_return_line,name_book_return_line,model_book_return_line,,1,1,1,1

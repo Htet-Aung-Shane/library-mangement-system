@@ -38,6 +38,7 @@
                     <field name="rent_date" />
                     <field name="return_date" />
                     <field name="expire_date" />
+                    <field name="is_rent" />
                     <field name="is_penalty" />
                     <field name="is_returned" />
                     <field name="author_id"/>
