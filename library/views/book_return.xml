@@ -22,8 +22,8 @@
 				<form string="Book Return Form">
                     <header>
                         <button string="Generate" name="action_generate" type="object" class="btn btn-outline-primary ms-2 btn-sm px-4" invisible="is_generate"/>   
-                        <button string="Return" name="action_return" type="object" class="btn btn-outline-info ms-2 btn-sm px-4" invisible="not is_generate"/>   
-                        <button string="Draft" name="action_draft" type="object" class="btn btn-outline-info ms-2 btn-sm px-4"/>   
+                        <button string="Return" name="action_return" type="object" class="btn btn-outline-info ms-2 btn-sm px-4" invisible="is_return"/>   
+                        <button string="Draft" name="action_draft" type="object" class="btn btn-outline-danger ms-2 btn-sm px-4" invisible="not is_return"/>   
                     </header> 
 					<sheet>
                         <group>
@@ -46,6 +46,7 @@
 										<field name="author_id" readonly="True"/>
 										<field name="category_ids" widget="many2many_tags" readonly="True"/>
 										<field name="rent_quantity" readonly="1"/>
+										<field name="return_quantity" readonly="parent.is_return"/>
 										<field name="onhand_quantity" readonly="1"/>
 										<field name="rent_date" readonly="1" />
 										<field name="expire_date" readonly="1"/>

@@ -22,6 +22,7 @@
         'views/book_author.xml',
         'views/book_rent.xml',
         'views/book_rent_line.xml',
+        'views/book_return_line.xml',
         'views/book_return.xml',
         'views/rent_sequence.xml',
         'views/return_sequence.xml',

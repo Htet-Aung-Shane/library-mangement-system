@@ -62,11 +62,23 @@ class BookReturn(models.Model):
                 )
             if return_lines:
                 rec.write({"return_ids": return_lines})
+            rec.is_generate = True
+            rec.is_return = False
 
     def action_return(self):
-        print("return")
+        for rec in self:
+            for book_return in rec.return_ids:
+                if book_return.return_quantity:
+                    book_return.rent_quantity -= book_return.return_quantity
+                    book_return.rent_line_id.rent_quantity -= book_return.return_quantity
+                    book_return.return_date = rec.return_date
+                    book_return.rent_line_id.return_date = rec.return_date
+                    book_return.is_returned = True
+                    book_return.rent_line_id.is_returned=True                
+            rec.is_return = True
 
     def action_draft(self):
         for rec in self:
             rec.return_ids = False
-            self.is_generate = False
+            rec.is_generate = False
+            rec.is_return = False
