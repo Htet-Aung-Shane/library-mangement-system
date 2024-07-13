@@ -29,7 +29,7 @@ class BookReturnLine(models.Model):
     is_penalty = fields.Boolean('Is Penalty', compute="_compute_is_penalty",store=True,pre_compute=True)
     rent_line_id = fields.Many2one('book.rent.line', string="Rent")
     return_id = fields.Many2one('book.return', string="Return")
-    is_returned = fields.Boolean('Is Returned')
+    is_returned = fields.Boolean('Is Returned',default=False)
     penalty_fee = fields.Float('Penalty Fee')
     
     

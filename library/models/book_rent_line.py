@@ -28,8 +28,8 @@ class BookRentLine(models.Model):
     expire_date = fields.Date('Expired Date')
     is_penalty = fields.Boolean('Is Penalty', compute="_compute_is_penalty",store=True,pre_compute=True)
     rent_id = fields.Many2one('book.rent', string="Rent")
-    is_returned = fields.Boolean('Is Returned')
-    is_rent = fields.Boolean('Is Rent')
+    is_returned = fields.Boolean('Is Returned', default=False)
+    is_rent = fields.Boolean('Is Rent', default=False)
 
     @api.constrains('expire_date', 'rent_date')
     def _check_dates(self):

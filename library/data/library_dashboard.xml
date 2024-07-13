@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="dashboard" model="library.dashboard">
+        <field name="name">Books</field>
+    </record>
+    <record id="library_book_rent" model="library.dashboard">
+        <field name="name">Book Rent</field>
+    </record>
+    <record id="library_book_return" model="library.dashboard">
+        <field name="name">Book Return</field>
+    </record>
+    <record id="library_author" model="library.dashboard">
+        <field name="name">Author</field>
+    </record>
+    <record id="library_category" model="library.dashboard">
+        <field name="name">Category</field>
+    </record>
+</odoo>

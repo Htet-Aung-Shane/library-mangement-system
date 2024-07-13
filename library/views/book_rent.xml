@@ -39,6 +39,7 @@
 							<group>
 								<field name="admin_id" readonly='True'/>
 								<field name="rent_date" readonly='True'/>
+								<field name="remark" />
 							</group>
 						</group>
 						<notebook>

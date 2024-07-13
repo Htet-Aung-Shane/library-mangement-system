@@ -67,10 +67,13 @@ class BookReturn(models.Model):
 
     def action_return(self):
         for rec in self:
+            if self.no == 'Draft':  # Check if the sequence is still the placeholder
+                self.no = self.env['ir.sequence'].next_by_code('book.return')
             for book_return in rec.return_ids:
                 if book_return.return_quantity:
                     book_return.rent_quantity -= book_return.return_quantity
                     book_return.rent_line_id.rent_quantity -= book_return.return_quantity
+                    book_return.rent_line_id.book_id.rent_quantity -= book_return.return_quantity
                     book_return.return_date = rec.return_date
                     book_return.rent_line_id.return_date = rec.return_date
                     book_return.is_returned = True
@@ -82,3 +85,12 @@ class BookReturn(models.Model):
             rec.return_ids = False
             rec.is_generate = False
             rec.is_return = False
+            for book_return in rec.return_ids:
+                if book_return.return_quantity:
+                    book_return.rent_quantity += book_return.return_quantity
+                    book_return.rent_line_id.rent_quantity += book_return.return_quantity
+                    book_return.rent_line_id.book_id.rent_quantity += book_return.return_quantity
+                    book_return.return_date = False
+                    book_return.rent_line_id.return_date = False
+                    book_return.is_returned = False
+                    book_return.rent_line_id.is_returned=False    

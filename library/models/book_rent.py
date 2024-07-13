@@ -22,6 +22,7 @@ class BookRent(models.Model):
         required=True,
     )
     is_confirm = fields.Boolean('Is Confirm', default=False)
+    remark = fields.Char('Remark')
 
     @api.onchange('no')
     def _compute_name(self):

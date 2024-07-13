@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <!-- ONBOARDING STEPS -->
+        <!-- LUCKY_DRAW -->
+        <record id="onboarding_onboarding_library" model="onboarding.onboarding.step">
+            <field name="title">Library</field>
+            <field name="description">Manage Library For Your University</field>
+            <field name="button_text">Rent Now</field>
+            <field name="done_text">Looks great!</field>
+            <field name="panel_step_open_action_name">action_book_rent</field>
+            <field name="step_image" type="base64" file="base/static/img/onboarding_company-data.png"></field>
+            <field name="step_image_filename">onboarding_company-data.png</field>
+            <field name="step_image_alt">Onboarding Company Data</field>
+            <field name="sequence">1</field>
+        </record>
+        <record id="onboarding_onboarding_book_return" model="onboarding.onboarding.step">
+            <field name="title">Book Return</field>
+            <field name="description">Return books from students</field>
+            <field name="button_text">Return Book</field>
+            <field name="done_text">Looks great!</field>
+            <field name="panel_step_open_action_name">action_book_return</field>
+            <field name="step_image" type="base64" file="base/static/img/onboarding_default.png"></field>
+            <field name="step_image_filename">onboarding_default.png"</field>
+            <field name="step_image_alt">Onboarding Documents Layout</field>
+            <field name="sequence">2</field>
+        </record>
+
+        <record id="onboarding_onboarding_book" model="onboarding.onboarding.step">
+            <field name="title">Books</field>
+            <field name="description">Book List</field>
+            <field name="button_text">Create Book</field>
+            <field name="done_text">Looks great!</field>
+            <field name="panel_step_open_action_name">action_book</field>
+            <field name="step_image" type="base64" file="base/static/img/onboarding_quotation-layout.png"></field>
+            <field name="step_image" type="base64" file="base/static/img/onboarding_chart-of-accounts.png"></field>
+            <field name="step_image_filename">onboarding_chart-of-accounts.png</field>
+            <field name="sequence">3</field>
+        </record>
+
+
+        <!-- ONBOARDING PANELS -->
+
+        <record id="onboarding_onboarding_library_dashboard" model="onboarding.onboarding">
+            <field name="name">Library Dashboard Onboarding</field>
+            <field name="step_ids" eval="[
+                Command.link(ref('library.onboarding_onboarding_library')),
+                Command.link(ref('library.onboarding_onboarding_book_return')),
+                Command.link(ref('library.onboarding_onboarding_book')),
+            ]"/>
+            <field name="route_name">library_dashboard</field>
+            <field name="panel_close_action_name">action_close_panel_account_dashboard</field>
+        </record>
+    </data>
+</odoo>

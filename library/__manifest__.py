@@ -26,6 +26,9 @@
         'views/book_return.xml',
         'views/rent_sequence.xml',
         'views/return_sequence.xml',
+        'data/library_dashboard.xml',
+        'data/onboarding_data.xml',
+        'views/dashboard.xml',
         'views/menu.xml', 
     ]
 }
