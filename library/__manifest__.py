@@ -11,7 +11,7 @@
     'installable': True,
     'auto_install': False,
     'application': True,
-    'depends': ['base','contacts','website', 'student'],
+    'depends': ['base','contacts','website', 'student','onboarding'],
     'images': [
         'static/description/icon.jpg',
     ],
