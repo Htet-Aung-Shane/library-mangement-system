@@ -23,7 +23,7 @@ class Library(AuthSignupHome):
         )
 
     @http.route("/my/book/rent", auth="user", website=True, type="http")
-    def student_profile(self, page=0, **kw):
+    def book_rent(self, page=0, **kw):
         books = request.env["book"].sudo().search([])
         partner_id = request.env.user.partner_id
         student = (

@@ -17,7 +17,7 @@ class BookReturn(models.Model):
     name = fields.Char("Name", compute="_compute_name")
     student_id = fields.Many2one("student", string="Student")
     return_date = fields.Date("Return Date", default=fields.Date.today())
-    total_penalty_fee = fields.Float("Total Penalty Fee")
+    total_penalty_fee = fields.Float("Total Penalty Fee", compute="_compute_total_penalty_fee")
     is_generate = fields.Boolean("Is Generate", default=False)
     is_return = fields.Boolean("Is Return", default=False)
     return_ids = fields.One2many(
@@ -27,6 +27,15 @@ class BookReturn(models.Model):
         required=True,
     )
 
+    @api.depends("return_ids")
+    def _compute_total_penalty_fee(self):
+        for rec in self:
+            total_fee = 0
+            if self.return_ids:
+                for line in self.return_ids:
+                    if line.penalty_fee:
+                        total_fee += line.penalty_fee
+                rec.total_penalty_fee = total_fee
     @api.onchange("no")
     def _compute_name(self):
         for rec in self:
@@ -73,7 +82,7 @@ class BookReturn(models.Model):
                 if book_return.return_quantity:
                     book_return.rent_quantity -= book_return.return_quantity
                     book_return.rent_line_id.rent_quantity -= book_return.return_quantity
-                    book_return.rent_line_id.book_id.rent_quantity -= book_return.return_quantity
+                    book_return.rent_line_id.book_id.rent_qty -= book_return.return_quantity
                     book_return.return_date = rec.return_date
                     book_return.rent_line_id.return_date = rec.return_date
                     book_return.is_returned = True

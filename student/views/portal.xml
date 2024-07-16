@@ -66,8 +66,8 @@
 						<thead style="font-size:12px;" class="text-light">
 							<th class="col-1">Sequence Name</th>
 							<th class="col-1">Book Name</th>
-							<th class="col-1">Rent Qty</th>
 							<th class="col-2">Rent Date</th>
+							<th class="col-1">Rent Qty</th>
 							<th class="col-2">Due Date</th>
 							<th class="col-2">Is Return</th>
 							<th class="col-2">Is Penalty</th>
@@ -122,7 +122,7 @@
 			<div class="container p-4 coupon  mx-auto">
 				<div class="d-flex justify-content-between p-2 mt-4">
 					<div class="col-4 mb-2">
-						<a href="/my/book/rent" class="text-decoration-none">
+						<a href="/my" class="text-decoration-none">
 							<i class="fa fa-home" aria-hidden="true" />
 						</a>
 						<span>
