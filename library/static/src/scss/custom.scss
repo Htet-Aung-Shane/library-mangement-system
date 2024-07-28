@@ -1,0 +1,16 @@
+@font-face {
+    font-family: 'Zawgyi';
+    src: url(../fonts/zawgyi-one.ttf);
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Unicode';
+    src: url(../fonts/NotoSansMyanmar-Regular.ttf);
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'Zawgyi', sans-serif;
+}

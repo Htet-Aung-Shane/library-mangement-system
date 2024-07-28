@@ -25,7 +25,10 @@ class Library(AuthSignupHome):
     @http.route("/my/book/rent", auth="user", website=True, type="http")
     def book_rent(self, page=0, **kw):
         books = request.env["book"].sudo().search([])
+        categories = request.env["book.category"].sudo().search([])
+        authors = request.env["book.author"].sudo().search([])
         partner_id = request.env.user.partner_id
+        choose_category = False
         student = (
             request.env["student"].sudo().search([("partner_id", "=", partner_id.id)])
         )
@@ -34,35 +37,83 @@ class Library(AuthSignupHome):
             remark = ""
             qty = 0
             book_id = 0
+            author = 0
+            catgory = 0
 
             for key, value in kw.items():
+                if key == "author" or key == "category":
+                    choose_category = True
+                if key == "author":
+                    author = value
+                if key == "category":
+                    category = value
                 if key == "remark":
                     remark = value
                 elif key == "qty":
-                    qty = int(value)  
+                    qty = int(value)
                 elif key == "book":
-                    book_id = int(value)  
+                    book_id = int(value)
+            if choose_category:
+                if book_id == 0:
+                    query = []
+                    if author:
+                        query.append(('author_id', '=', author))
+                    if category:
+                        query.append(('category_ids', 'in', [category]))
+                    books = request.env["book"].sudo().search(query)
 
-            rent_lines = [
-                (0, 0, {
-                    "book_id": book_id,
-                    "rent_quantity": qty,
-                })
-            ]
+                    return request.render(
+                        "student.BookRent",
+                        {
+                            "books": books,
+                            "authors": authors,
+                            "categories": categories,
+                            "profile": profile,
+                            "form_submit": False,
+                            "choose_category": choose_category,
+                        },
+                    )
+                else:
+                    rent_lines = [
+                        (
+                            0,
+                            0,
+                            {
+                                "book_id": book_id,
+                                "rent_quantity": qty,
+                            },
+                        )
+                    ]
 
-            rent_data = {
-                "student_id": student.id,
-                "admin_id": partner_id.id,
-                "remark": remark,
-                "rent_ids": rent_lines 
-            }
+                    rent_data = {
+                        "student_id": student.id,
+                        "admin_id": partner_id.id,
+                        "remark": remark,
+                        "rent_ids": rent_lines,
+                    }
 
-            rent = request.env["book.rent"].sudo().create(rent_data)
+                    rent = request.env["book.rent"].sudo().create(rent_data)
             return request.render(
-                "student.BookRent", {"books": books, "profile": profile, "form_submit": True}
+                "student.BookRent",
+                {
+                    "books": books,
+                    "authors": authors,
+                    "categories": categories,
+                    "profile": profile,
+                    "form_submit": True,
+                    "choose_category": choose_category,
+                },
             )
 
         else:
             return request.render(
-                "student.BookRent", {"books": books, "profile": profile, "form_submit": False}
+                "student.BookRent",
+                {
+                    "books": books,
+                    "profile": profile,
+                    "authors": authors,
+                    "categories": categories,
+                    "profile": profile,
+                    "form_submit": False,
+                },
             )

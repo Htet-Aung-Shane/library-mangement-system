@@ -30,5 +30,13 @@
         'data/onboarding_data.xml',
         'views/dashboard.xml',
         'views/menu.xml', 
-    ]
+    ],
+    'assets': {
+        'web.assets_frontend': [
+            "library/static/src/scss/custom.scss",  # Frontend styles
+        ],
+        'web.assets_backend': [
+            "library/static/src/scss/custom.scss",  # Frontend styles
+        ],
+    }
 }

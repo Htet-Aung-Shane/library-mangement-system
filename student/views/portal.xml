@@ -1,11 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
+	<template id="portal_name_update" inherit_id="portal.portal_my_home">
+		<xpath expr="//t[@t-set='title']" position="replace">
+			<t t-set="title">
+				Profile
+			</t>
+		</xpath>
+	</template>
+	<template id="portal_name_update" inherit_id="portal.portal_my_home">
+		<xpath expr="//t[@t-call='portal.portal_docs_entry'][2]" position="inside">
+			<t t-set="title">
+				Update &amp; Security
+			</t>
+		</xpath>
+	</template>
+	<template id="security_name_update" inherit_id="portal.portal_my_security">
+		<xpath expr="//h3[hasclass('my-0')]" position="replace">
+			<h3 class="my-0">
+				Update &amp; Security
+			</h3>
+		</xpath>
+	</template>
 	<template id="add_portal_view" inherit_id="portal.portal_my_home">
 		<xpath expr="//div[hasclass('o_portal_category')]/t[2]" position="after">
 			<t t-call="portal.portal_docs_entry">
 				<t t-set="icon" t-value="'/student/static/description/portal.png'" />
 				<t t-set="title">
-					Library
+					Rent History
 				</t>
 				<t t-set="text">
 					See Your Library Transaction
@@ -16,7 +37,7 @@
 			<t t-call="portal.portal_docs_entry">
 				<t t-set="icon" t-value="'/student/static/description/portal.png'" />
 				<t t-set="title">
-					Book Renting
+					Books To Rent
 				</t>
 				<t t-set="text">
 					Rent The Books
@@ -41,39 +62,54 @@
 							Library / Transitions
 						</span>
 					</div>
-					<div
-						class="col-lg-4 p-2  mb-2  border-primary border-top-0 border  border-start-0 border-end-0">
+					<div class="col-lg-4 p-2  mb-2  border-primary border-top-0 border  border-start-0 border-end-0">
 						<t t-foreach="profile" t-as="p">
 							<table class="px-4">
 								<tr>
-									<td class="fw-bold">Student Name :</td>
+									<td class="fw-bold">
+										Student Name :
+									</td>
 									<td>
 										<t t-out="p['name']" />
 									</td>
 									<td width="50px" />
-									<td class="text-break fw-bold">Student Id : </td>
+									<td class="text-break fw-bold">
+										Student Id :
+									</td>
 									<td>
 										<t t-out="p['student_id']" />
 									</td>
 								</tr>
 							</table>
-
 						</t>
 					</div>
 				</div>
 				<div>
 					<table class="table table-bordered table-sm mb-1 text-center bg-dark">
 						<thead style="font-size:12px;" class="text-light">
-							<th class="col-1">Sequence Name</th>
-							<th class="col-1">Book Name</th>
-							<th class="col-2">Rent Date</th>
-							<th class="col-1">Rent Qty</th>
-							<th class="col-2">Due Date</th>
-							<th class="col-2">Is Return</th>
-							<th class="col-2">Is Penalty</th>
+							<th class="col-1">
+								Sequence Name
+							</th>
+							<th class="col-1">
+								Book Name
+							</th>
+							<th class="col-2">
+								Rent Date
+							</th>
+							<th class="col-1">
+								Rent Qty
+							</th>
+							<th class="col-2">
+								Due Date
+							</th>
+							<th class="col-2">
+								Is Return
+							</th>
+							<th class="col-2">
+								Is Penalty
+							</th>
 						</thead>
 						<tbody style="font-size:12px;" class="text-light">
-
 							<t t-foreach="data" t-as="d">
 								<tr>
 									<td class="col-2">
@@ -112,11 +148,9 @@
 						</tbody>
 					</table>
 				</div>
-
 			</div>
 		</t>
 	</template>
-
 	<template id="student.BookRent" name="Library Transitions">
 		<t t-call="website.layout">
 			<div class="container p-4 coupon  mx-auto">
@@ -132,23 +166,25 @@
 							Library / Rent
 						</span>
 					</div>
-					<div
-						class="col-lg-4 p-2  mb-2  border-primary border-top-0 border  border-start-0 border-end-0">
+					<div class="col-lg-4 p-2  mb-2  border-primary border-top-0 border  border-start-0 border-end-0">
 						<t t-foreach="profile" t-as="p">
 							<table class="px-4">
 								<tr>
-									<td class="fw-bold">Student Name :</td>
+									<td class="fw-bold">
+										Student Name :
+									</td>
 									<td>
 										<t t-out="p['name']" />
 									</td>
 									<td width="50px" />
-									<td class="text-break fw-bold">Student Id : </td>
+									<td class="text-break fw-bold">
+										Student Id :
+									</td>
 									<td>
 										<t t-out="p['student_id']" />
 									</td>
 								</tr>
 							</table>
-
 						</t>
 					</div>
 				</div>
@@ -156,98 +192,76 @@
 					<t t-if="form_submit">
 						<div class="col-lg-6 col-md-12 alert alert-success" role="alert">
 							You have successfully tick the book!
-						  </div>
+						</div>
 					</t>
 					<form action="/my/book/rent" method="post">
-						<h4>Rent The Books</h4>
-						<div class="col-lg-6 col-md-12">
-							<input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
-							<select class="form-select rounded-0" name="book"
-								aria-label="Default select example">
-								<t t-foreach="books" t-as="book">
-									<option t-att-value="book['id']">
-										<t t-out="book['name']" />
+						<input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+						<h4>
+							Rent The Books
+						</h4>
+						<input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+						<t t-if="not choose_category">
+							<div class="col-lg-6 col-md-12">
+								<label for="Author">
+									Author
+								</label>
+								<select class="form-select rounded-0" name="author" aria-label="Default select example">
+									<option value="">
+										Choose Author
 									</option>
-								</t>
-							</select>
-
-						</div>
-						<br />
+									<t t-foreach="authors" t-as="author">
+										<option t-att-value="author['id']">
+											<t t-out="author['name']" />
+										</option>
+									</t>
+								</select>
+							</div>
+							<br />
+							<div class="col-lg-6 col-md-12">
+								<label for="category">
+									Category
+								</label>
+								<select class="form-select rounded-0" name="category" aria-label="Default select example">
+									<option value="">
+										Choose Category
+									</option>
+									<t t-foreach="categories" t-as="category">
+										<option t-att-value="category['id']">
+											<t t-out="category['name']" />
+										</option>
+									</t>
+								</select>
+							</div>
+							<br />
+						</t>
+						<t t-if="choose_category">
+							<div class="col-lg-6 col-md-12">
+								<select class="form-select rounded-0" name="book" aria-label="Default select example">
+									<t t-foreach="books" t-as="book">
+										<option t-att-value="book['id']">
+											<t t-out="book['name']" />
+										</option>
+									</t>
+								</select>
+							</div>
+							<br />
+							<div class="col-lg-6 col-md-12">
+								<input type="text" name="qty" class="form-control rounded-0" placeholder="Type the rent qty" />
+							</div>
+							<br />
+							<div class="col-lg-6 col-md-12">
+								<input type="text" name="remark" class="form-control rounded-0" placeholder="Remark" />
+							</div>
+							<br />
+						</t>
 						<div class="col-lg-6 col-md-12">
-							<input type="text" name="qty" class="form-control rounded-0" placeholder="Type the rent qty" />
-						</div>
-						
-						<br />
-						<div class="col-lg-6 col-md-12">
-							<input type="text" name="remark" class="form-control rounded-0"
-								placeholder="Remark" />
-						</div>
-						<br />
-						<div class="col-lg-6 col-md-12">
-							<button type="submit"
-								class="btn btn-sm  btn-outline-primary rounded-0 p-2 submint_btn">
+							<button type="submit" class="btn btn-sm  btn-outline-primary rounded-0 p-2 submint_btn">
 								Book
 							</button>
-							<!-- <button
-								class="btn btn-sm  btn-outline-danger rounded-0 p-2 ]">
-								Cancel
-							</button> -->
 						</div>
-
 					</form>
-					<!-- <table class="table table-bordered table-sm mb-1 text-center bg-dark">
-						<thead style="font-size:12px;" class="text-light">
-							<th class="col-1">Sequence Name</th>
-							<th class="col-1">Book Name</th>
-							<th class="col-1">Rent Qty</th>
-							<th class="col-2">Rent Date</th>
-							<th class="col-2">Due Date</th>
-							<th class="col-2">Is Return</th>
-							<th class="col-2">Is Penalty</th>
-						</thead>
-						<tbody style="font-size:12px;" class="text-light">
-
-							<t t-foreach="data" t-as="d">
-								<tr>
-									<td class="col-2">
-										<t t-out="d['rent_id'].name" />
-									</td>
-									<td class="col-2">
-										<t t-out="d['book_id'].name" />
-									</td>
-									<td class="col-2">
-										<t t-out="d['rent_date']" />
-									</td>
-									<td class="col-2">
-										<t t-out="d['rent_quantity']" />
-									</td>
-									<td class="col-2">
-										<t t-out="d['expire_date']" />
-									</td>
-									<td class="col-2">
-										<t t-if="d['is_returned']">
-											<t t-out="d['is_returned']" />
-										</t>
-										<t t-else="">
-											False
-										</t>
-									</td>
-									<td class="col-2">
-										<t t-if="d['is_penalty']">
-											<t t-out="d['is_penalty']" />
-										</t>
-										<t t-else="">
-											False
-										</t>
-									</td>
-								</tr>
-							</t>
-						</tbody>
-					</table> -->
 				</div>
-
 			</div>
 		</t>
 	</template>
-
 </odoo>
