@@ -57,9 +57,9 @@ class Library(AuthSignupHome):
                 if book_id == 0:
                     query = []
                     if author:
-                        query.append(('author_id', '=', author))
+                        query.append(('author_id', '=', int(author)))
                     if category:
-                        query.append(('category_ids', 'in', [category]))
+                        query.append(('category_ids', 'in', [int(category)]))
                     books = request.env["book"].sudo().search(query)
 
                     return request.render(

@@ -26,6 +26,7 @@ class Book(models.Model):
     category_ids = fields.Many2many("book.category")
 
     # additional_field
+    sequence_no = fields.Char("Sequence No.")
     accession_no = fields.Char("Accession No.")
     call_no = fields.Char("Call No.")
     date = fields.Date("Date")

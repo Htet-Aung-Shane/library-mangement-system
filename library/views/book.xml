@@ -47,6 +47,7 @@
 							<page name="addition_info" string="Addtional Info">
 								<group>
 									<group>
+										<field name="sequence_no" />
 										<field name="accession_no" />
 										<field name="call_no" /> 
 										<field name="book_source" /> 
