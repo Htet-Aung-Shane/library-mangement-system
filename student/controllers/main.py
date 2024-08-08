@@ -73,26 +73,26 @@ class Library(AuthSignupHome):
                             "choose_category": choose_category,
                         },
                     )
-                else:
-                    rent_lines = [
-                        (
-                            0,
-                            0,
-                            {
-                                "book_id": book_id,
-                                "rent_quantity": qty,
-                            },
-                        )
-                    ]
+            if book_id != 0:
+                rent_lines = [
+                    (
+                        0,
+                        0,
+                        {
+                            "book_id": book_id,
+                            "rent_quantity": qty,
+                        },
+                    )
+                ]
 
-                    rent_data = {
-                        "student_id": student.id,
-                        "admin_id": partner_id.id,
-                        "remark": remark,
-                        "rent_ids": rent_lines,
-                    }
+                rent_data = {
+                    "student_id": student.id,
+                    "admin_id": partner_id.id,
+                    "remark": remark,
+                    "rent_ids": rent_lines,
+                }
 
-                    rent = request.env["book.rent"].sudo().create(rent_data)
+                rent = request.env["book.rent"].sudo().create(rent_data)
             return request.render(
                 "student.BookRent",
                 {
