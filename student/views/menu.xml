@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-	<menuitem id="menu_student" name="Student" web_icon="student,static/description/icon.png" />
+	<menuitem id="menu_student" name="Member" web_icon="student,static/description/icon.png" />
 	<menuitem id="menu_student_detal" name="Student Profiles" action="student_act" parent= "menu_student" sequence="1"/>
 	<menuitem id="menu_configuration" name="Configuration" parent="menu_student" sequence="2"/>
 		<menuitem id="menu_student_academic" name="Academic Year" action="academic_act" parent="menu_configuration"/>
