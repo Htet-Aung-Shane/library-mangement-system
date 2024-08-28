@@ -23,5 +23,10 @@
         'views/class.xml',
         'views/menu.xml', 
         'views/portal.xml', 
-    ]
+    ],
+    "assets": {
+        'web.assets_frontend': [
+            'student/static/src/js/*',
+        ]
+    }
 }

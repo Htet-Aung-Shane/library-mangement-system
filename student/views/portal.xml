@@ -194,7 +194,7 @@
 							You have successfully tick the book!
 						</div>
 					</t>
-					<form action="/my/book/rent" method="post">
+					<form action="/my/book/rent" method="post" id="book_rent">
 						<input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
 						<h4>
 							Rent The Books
@@ -205,7 +205,7 @@
 								<label for="Author">
 									Author
 								</label>
-								<select class="form-select rounded-0" name="author" aria-label="Default select example">
+								<select class="form-select rounded-0" name="author" id="author" aria-label="Default select example">
 									<option value="">
 										Choose Author
 									</option>
