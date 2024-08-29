@@ -7,6 +7,23 @@
 			<field name="view_mode">tree,form</field>
 			<!-- <field name="view_id" ref="bok_view_form"/> -->
 		</record> 
+		<record id="mt_book_search" model="ir.ui.view">
+        <field name="name">mt_book_search_view</field>
+        <field name="model">book</field>
+        <field name="arch" type="xml">
+            <search string="">
+                <field name="name" string="Book Name" />
+                <field name="author_id" string="Author" />
+                <field name="isbn" string="ISBN" />
+                <field name="barcode" string="Barcode" />
+                <field name="category_ids" string="Category" />        
+                <group expand="0" string="Group By">
+                    <filter name="author_id" string="Author" context="{'group_by': 'author_id'}" />
+                    <filter name="category_ids" string="Category" context="{'group_by': 'category_ids'}" />
+                </group>
+            </search>
+        </field>
+    </record>
         <record id="book_model_view_tree" model="ir.ui.view">
 			<field name="name">book.model.view.tree</field>
 			<field name="model">book</field>
