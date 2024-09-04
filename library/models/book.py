@@ -39,6 +39,13 @@ class Book(models.Model):
     department = fields.Char("Department")
     roll_no = fields.Char("Roll No.")
 
+    @api.model
+    def create(self, vals):
+        if 'accession_no' in vals:
+            existing_book = self.env['book'].search([('accession_no', '=', vals['accession_no'])], limit=1)
+            if existing_book:
+                raise UserError('Accession number must be unique')
+        return super(Book, self).create(vals)
 
     @api.onchange('total_qty','rent_qty')
     def _compute_onhand(self):
