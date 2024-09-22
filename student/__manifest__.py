@@ -23,10 +23,14 @@
         'views/class.xml',
         'views/menu.xml', 
         'views/portal.xml', 
+        'website/website_menu.xml',
+        'website/rent_book_page.xml',
+        'website/confirm_rent_book.xml'
+
     ],
     "assets": {
         'web.assets_frontend': [
             'student/static/src/js/*',
-        ]
+        ],
     }
 }

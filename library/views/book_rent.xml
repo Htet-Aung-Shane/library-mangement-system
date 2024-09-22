@@ -54,6 +54,7 @@
 										<field name="rent_date" readonly="parent.is_confirm" />
 										<field name="expire_date" required="1"/>
 										<field name="is_penalty" readonly="1"/>
+										<field name="is_confirm" readonly="1"/>
 										<field name="is_returned" readonly="1"/>
 									</tree>
 								</field>

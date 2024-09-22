@@ -1,0 +1,46 @@
+<odoo>
+    <data>
+        <template id="confirm_rent_book" name="Confirm  Books">
+            <t t-call="website.layout">
+              
+                <div class="container p-3" id="rent_book_page">
+                  <a href="/rent_book" class="mt-2 mb-2"><i class="fa fa-chevron-left  text-secondary" aria-hidden="true"/> <span class="text-secondary"> Home / Rent </span></a>
+                    <table class="table table-bordered border rounded shadow-md">
+                        <thead>
+                            <tr>
+                                <th class="col-1" scope="col-lg-1">No</th>
+                                <!-- <th scope="col">Image</th> -->
+                                <th scope="col">Name</th>
+                                <th scope="col">Author</th>
+                                <th scope="col">Category</th>
+                                <th scope="col">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-set="data" t-value="[]"/>
+                            <t t-foreach="books" t-as="bok">
+                                <tr>
+                                    <t t-set="data" t-value="data + [bok['id']]"/>
+                                    <th scope="row"><t t-esc="bok_index +1 "/></th>
+                                    <!-- <td>
+                                        <img t-attf-src="data:image/png;base64,{{bok['img']}}" class="card-img-top rounded shadow-md" alt="..." width="50px" height="150px"/>
+                                    </td> -->
+                                    <td><t t-esc="bok['name']"/></td>
+                                     <td><t t-esc="bok['author']"/></td>
+                                    <td><t t-esc="bok['category']"/></td>
+                                    <td><a t-attf-href="/book/views/{{bok['id']}}" class="btn btn-danger btm-sm">Remove<i calss="fa fa-trash fs-5 ms-2"/></a></td>
+
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                    <div class="float-end mb-3">
+                        <!-- <t t-esc="data"/> -->
+                        <button  class="btn btn-md btn-secondary" t-attf-value="{{data}}" id="rent_now">Rent now</button>
+                    </div>
+                </div>
+            </t>
+
+        </template>
+    </data>
+</odoo>

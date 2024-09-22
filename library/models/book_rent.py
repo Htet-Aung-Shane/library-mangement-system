@@ -69,6 +69,7 @@ class BookRent(models.Model):
                 elif rent.rent_quantity:
                     rent.book_id.rent_qty += rent.rent_quantity
                 rent.is_rent = True
+                rent.is_confirm= True
         self.is_confirm = True
 
 
@@ -76,6 +77,7 @@ class BookRent(models.Model):
         if self.rent_ids:
             for rent in self.rent_ids:
                 rent.is_rent = False
+                rent.is_confirm = False
                 if rent.rent_quantity:
                     rent.book_id.rent_qty -= rent.rent_quantity
         self.is_confirm = False

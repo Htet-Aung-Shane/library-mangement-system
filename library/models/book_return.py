@@ -35,7 +35,8 @@ class BookReturn(models.Model):
                 for line in self.return_ids:
                     if line.penalty_fee:
                         total_fee += line.penalty_fee
-                rec.total_penalty_fee = total_fee
+            rec.total_penalty_fee = total_fee
+
     @api.onchange("no")
     def _compute_name(self):
         for rec in self:
@@ -48,7 +49,7 @@ class BookReturn(models.Model):
         # self.is_generate = True
         for rec in self:
             rent_obj = self.env["book.rent.line"].search(
-                [("student_id", "=", rec.student_id.id), ("is_rent", "=", True)]
+                ['|',("student_id", "=", rec.student_id.id), ("is_returned", "=", False), ("rent_quantity", "!=", 0)]
             )
             return_lines = []
             for rent in rent_obj:
@@ -86,7 +87,9 @@ class BookReturn(models.Model):
                     book_return.return_date = rec.return_date
                     book_return.rent_line_id.return_date = rec.return_date
                     book_return.is_returned = True
-                    book_return.rent_line_id.is_returned=True                
+                    book_return.rent_line_id.is_returned=True      
+                else:
+                    print("not return quantity",book_return.return_quantity)          
             rec.is_return = True
 
     def action_draft(self):
