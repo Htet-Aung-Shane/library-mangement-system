@@ -2,60 +2,64 @@
     <data>
         <template id="rent_book_page" name="Rent Books">
             <t t-call="portal.portal_layout">
-             <div class="book_page_id">
-                <t t-set="breadcrumbs_searchbar" t-value="True"/>
-                <t t-call="portal.portal_searchbar" class="border">
-                    <!-- Pass the searchbar_inputs variable -->
-                                    <div class="d-flex justify-content-between">
-                    <form action="/book/views" method="post">
-                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
-                        <input type="hidden" name="book_list" value="" class="book_id_obj"/>
-                       <button type="submit" class="border-0 position-relative disabled" id="rent_button">
-                                <i class="fa fa-comment-o fs-4 text-secondary" aria-hidden="true"></i>
-                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary py-1" id="count_book">
-                                <span class="visually-hidden">unread messages</span>
-                            </span>
-                        </button>
-                    </form>
-                </div>
-
-                    <t t-set="searchbar_inputs" t-value="searchbar_inputs"/>
-                </t>
-                <div class="container ">
-                    <div class="row row-cols-1 row-cols-md-4 g-4">
-                        <t t-foreach="books" t-as="bok">
-                            <div class="col">
-                                <div class="card shadow-md">
-                                    <img t-attf-src="data:image/png;base64,{{bok.image}}" class="card-img-top" alt="..." width="300px" height="300px"/>
-                                    <div class="card-body">
-                                        <p class="card-title text-danger fw-bold fs-6" style="font-size:10px !important;">
-                                            <t t-esc="bok.name"/>
-                                        </p>
-                                        <p class="card-text">
-                                            <t t-esc="bok.author_id.name"/>
-                                        </p>
-                                    </div>
-                                    <div class="d-flex justify-content-end mb-1 me-2">
-                                        <a t-if="bok.onhand_qty != 0" href='#' t-attf-class="btn btn-outline-secondary py-2 btn-sm fw-bold" id="add_rent" t-att-value="bok.id">
+                <div class="book_page_id">
+                    <t t-set="breadcrumbs_searchbar" t-value="True"/>
+                    <t t-call="portal.portal_searchbar" class="border">
+                        <!-- Pass the searchbar_inputs variable -->
+                        <div class="d-flex justify-content-between">
+                            <form action="/book/views" method="post">
+                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                <input type="hidden" name="book_list" value="" class="book_id_obj"/>
+                                <button type="submit" class="btn border-0 px-2 py-1 position-relative disabled" id="rent_button" style="background-color:#e9e9ed !important">
+                                    <i class="fa fa-shopping-cart fs-4 text-secondary" aria-hidden="true"></i>
+                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary py-1" id="count_book">
+                                        <span class="visually-hidden">unread messages</span>
+                                    </span>
+                                </button>
+                            </form>
+                        </div>
+                        <t t-set="searchbar_inputs" t-value="searchbar_inputs"/>
+                    </t>
+                    <div class="container ">
+                        <div class="row row-cols-1 row-cols-md-4 g-4">
+                            <t t-foreach="books" t-as="bok">
+                                <div class="col">
+                                    <div class="card shadow-md">
+                                        <t>
+                                            <img t-if="bok.image" t-attf-src="data:image/png;base64,{{bok.image}}" class="card-img-top" alt="..." width="300px" height="300px"/>
+                                        </t>
+                                        <t>
+                                            <img t-attf-src="/student/static/description/book.png" class="card-img-top" alt="..." width="300px" height="300px"/>
+                                        </t>
+                                        <div class="card-body">
+                                            <p class="card-title text-danger fw-bold fs-6" style="font-size:10px !important;">
+                                                <t t-esc="bok.name"/>
+                                            </p>
+                                            <p class="card-text">
+                                                <t t-esc="bok.author_id.name"/>
+                                            </p>
+                                        </div>
+                                        <div class="d-flex justify-content-end mb-1 me-2">
+                                            <a t-if="bok.onhand_qty != 0" href='#' t-attf-class="btn btn-outline-secondary py-2 btn-sm fw-bold" id="add_rent" t-att-value="bok.id">
                                                Add to rent
-                                        </a>
-                                        <a t-if="bok.onhand_qty == 0" href='#' t-attf-class="btn border border-bottom py-2 btn-sm fw-bold disabled text-danger">
+                                            </a>
+                                            <a t-if="bok.onhand_qty == 0" href='#' t-attf-class="btn border border-bottom py-2 btn-sm fw-bold disabled text-danger">
                                                 No on hand
-                                        </a>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </t>
-                    </div>
-                    <div class="d-flex justify-content-center">
-                        <div class="products_pager form-inline m-3 pg-danger mt-4">
-                            <t t-call="website.pager">
-                                <t t-set="_classes">mt-2 ml-md-2</t>
                             </t>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <div class="products_pager form-inline m-3 pg-danger mt-4">
+                                <t t-call="website.pager">
+                                    <t t-set="_classes">mt-2 ml-md-2</t>
+                                </t>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
             </t>
 
         </template>

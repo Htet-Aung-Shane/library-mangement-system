@@ -34,6 +34,17 @@
 				<t t-set="url" t-value="'/rent/history'" />
 				<t t-set="config_card" t-value="True" />
 			</t>
+			<t t-call="portal.portal_docs_entry">
+				<t t-set="icon" t-value="'/student/static/description/portal.png'" />
+				<t t-set="title">
+					Rent Books
+				</t>
+				<t t-set="text">
+					Find all can hire books
+				</t>
+				<t t-set="url" t-value="'/rent_book'" />
+				<t t-set="config_card" t-value="True" />
+			</t>
 		</xpath>
 	</template>
 	<template id="student.StudentProfile" name="Library Transitions">

@@ -12,23 +12,30 @@ PublicWidget.registry.Book = PublicWidget.Widget.extend({
         this._super(...arguments);
         this.orm = this.bindService("orm");
         this.ary = JSON.parse(localStorage.getItem('bookCount'));
-        this.bk_count = []
+        this.bk_count = [];
+        this.comDate = [];
     },
 
     async start() {
+        this._super.apply(this, arguments);  // Ensure parent class `start` is called
         this.getCount()
-        console.log("I am working",this.orm)
-        // Additional initialization logic, if needed
+        const getAllData =await this.orm.searchRead('book',[],['id']);
+        if(this.ary.length > 0){
+            this.comDate = this.ary
+        }
+        console.log(getAllData)
     },
 
     getCount(){
         this.bk_count =this.ary? JSON.parse(localStorage.getItem('bookCount')) : [];
         console.log(this.bk_count,this.ary)
         if(this.bk_count.length > 0){
+            console.log("win")
             $('#count_book').html(this.bk_count.length);
             $('.book_id_obj').val(this.bk_count)
             $('#rent_button').removeClass('disabled')
         }else{
+            console.log("Null")
             $('#rent_button').addClass('disabled');
             $('#count_book').html(0);
         }
@@ -40,7 +47,9 @@ PublicWidget.registry.Book = PublicWidget.Widget.extend({
         const bookId = button.attr('value');
         const id = JSON.parse(bookId)   
         if (!this.bk_count.includes(id)) { // Check if the book ID already exists
-            this.bk_count.push(id); // Add the ID if it doesn't already exist
+            this.bk_count.push(id);
+            button.removeClass('btn-outline-secondary ')
+            button.addClass('btn-secondary ') // Add the ID if it doesn't already exist
         }
         if(this.bk_count.length > 0){
             $('.book_id_obj').val(JSON.stringify(this.bk_count))
@@ -55,8 +64,6 @@ PublicWidget.registry.Book = PublicWidget.Widget.extend({
             console.log(obj_book)
             $('#count_book').html( obj_book.length);
             $('#rent_button').removeClass('disabled')
-        }else{
-            $('#rent_button').addClass('disabled')  
         }
     },
 
